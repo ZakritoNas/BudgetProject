@@ -3,26 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        .background-radial-gradient {
+            background-size: auto;
+            background-color: hsl(103, 49%, 44%);
+            background-image: radial-gradient(1250px circle at 0% 0%,
+            hsl(80, 100%, 49%) 15%,
+            hsl(90, 100%, 49%) 35%,
+            hsl(84, 100%, 59%) 75%,
+            hsl(80, 61%, 50%) 80%,
+            transparent 100%),
+            radial-gradient(1250px circle at 100% 100%,
+                    hsl(80, 100%, 49%) 15%,
+                    hsl(90, 100%, 49%) 35%,
+                    hsl(84, 100%, 59%) 75%,
+                    hsl(80, 61%, 50%) 80%,
+                    transparent 100%);
+        }
+
+        #radius-shape-1 {
+            height: 220px;
+            width: 220px;
+            top: -60px;
+            left: -130px;
+            background: radial-gradient(#009B00, #BFFF00);
+            overflow: hidden;
+        }
+
+        #radius-shape-2 {
+            border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+            bottom: -60px;
+            right: -110px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(#009B00, #BFFF00);
+            overflow: hidden;
+        }
+
+        .bg-glass {
+            background-color: hsla(86, 87%, 71%, 0.9) !important;
+            backdrop-filter: saturate(200%) blur(25px);
+        }
+    </style>
 </head>
-<body>
-Hello from public page!
-Register
-<form method = "post" th:action = "@{/register}">
-    <input type="text" name = "userName"><br>
-    <input type="password" name = "password"><br>
-    <input type="submit" th:value="Add"><br>
-</form>
+<body class="background-radial-gradient overflow-hidden">
+    <div class="container px-4 py-5 px-mb-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-0">
+            <div class="form-outline mb-5">
+            </div>
+            <div class="form-outline mb-5">
+            </div>
+            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                    The best offer <br />
+                    <span style="color: hsl(151, 49%, 14%)">for your business</span>
+                </h1>
+                <p class="mb-4 opacity-70" style="color: hsl(151, 49%, 14%)">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Temporibus, expedita iusto veniam atque, magni tempora mollitia
+                    dolorum consequatur nulla, neque debitis eos reprehenderit quasi
+                    ab ipsum nisi dolorem modi. Quos?
+                </p>
+            </div>
 
-Login
-<form method = "post" th:action = "@{/login}">
-    <input type="text" name = "login"><br>
-    <input type="password" name = "cred"><br>
-    <input type="submit" th:value="Login"><br>
-</form>
+            <div class="col-lg-6 mb-7 mb-lg-5 position-relative">
+                <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
-Logout
-<form method = "post" th:action = "@{/logout}">
-    <input type="submit" th:value="Logout"><br>
-</form>
+                <div class="card bg-glass">
+                    <table>
+                        <tr>
+                            <td class="align-middle"><h5>Login</h5></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Registration
+                                    </button>
+                                    <div class="dropdown-menu">
+                                    <form method = "post" th:action = "@{/register}" class="row g-3">
+                                            <div class="col-12">
+                                                <label for="inputUserName" class="form-label">Логин</label>
+                                                <input type="text" name = "userName" class="form-control" id="inputUserName">
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="inputPassword4" class="form-label">Пароль</label>
+                                                <input type="password" name = "password" class="form-control" id="inputPassword4">
+                                            </div>
+                                        <div class="col-12">
+                                            <button type="submit" th:value="Add" class="btn btn-dark">Sign Up</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="card-body px-4 py-5 px-md-50">
+                        <div class="tab-content">
+                        <form method = "post" th:action = "@{/login}">
+                            <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" name = "login" id="form3Example1" class="form-control" />
+                                        <label class="form-label" for="form3Example1">Login</label>
+                                    </div>
+                                </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password"  name = "cred" id="form3Example2" class="form-control" />
+                                <label class="form-label" for="form3Example2">Password</label>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-light btn-block mb-4" >
+                                Sign up
+                            </button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-outline mb-5">
+            </div>
+            <div class="form-outline mb-5">
+            </div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

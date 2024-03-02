@@ -1,1 +1,12 @@
-
+server:
+  port: 8083
+spring:
+  datasource:
+    username: postgres
+    password: 08102003
+    url: jdbc:postgresql://localhost:5432/secure
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect

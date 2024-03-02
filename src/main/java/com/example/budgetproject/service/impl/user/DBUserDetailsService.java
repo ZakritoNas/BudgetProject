@@ -1,4 +1,4 @@
-package com.example.budgetproject.service.impl;
+package com.example.budgetproject.service.impl.user;
 
 import com.example.budgetproject.domain.UserEntity;
 import com.example.budgetproject.dto.UserDto;
@@ -35,9 +35,8 @@ public class DBUserDetailsService implements UserDetailsService {
         repository.save(entity);
     }
 
-    public void delete (UserDto dto){
-        UserEntity entity = mapper.toEntity(dto);
-        repository.deleteById(entity.getId());
+    public void delete (Integer id){
+        repository.deleteById(id);
     }
 
     public List<UserDto> findAll() {
@@ -45,11 +44,5 @@ public class DBUserDetailsService implements UserDetailsService {
         List<UserDto> dto = mapper.toDto(all);
         return dto;
     }
-
-//    public List<UserDto> findById(UserDto dto) {
-//        UserEntity entity = mapper.toEntity(dto);
-//        Optional<UserEntity> byId = repository.findById(entity.getId());
-//
-//    }
 
 }

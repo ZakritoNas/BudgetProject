@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -83,6 +82,18 @@
         .btn-new:hover {
             transform: translate(0,-3px);
             box-shadow: 0 20px 40px 0 rgba(0,69,36, 1);
+        }
+
+
+        .btn-delete {
+            border-radius: 10px;
+            color: black;
+            transition: .2s linear;
+            background: #FF7F50;
+        }
+
+        .btn-delete:hover {
+            box-shadow: 0 0 0 2px black, 0 0 0 4px #FF7F50;
         }
 
         .bg-glass {
@@ -170,104 +181,116 @@
 <div class="container px-4 py-5 px-xl-5">
     <div class="row">
         <div class="col-lg-2 mb-4 mb-lg-0">
-            <p> <h2><b>Финансы</b></h2>
-            </div>
-    <div class="col-lg-2 mb-4 mb-lg-0">
-                <button type="button" class="btn-new rounded-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                   <h5><b>Добавить сумму</b></h5>
-                </button>
-
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Добавление суммы</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/save}" method = "post" th:object="${fin}">
-                    <input type="number" step= "0.01" name = "amount" placeholder="amount" th:field="*{amount}"><br>
-                    <p th:each="category : ${categories}" >
-                        <input type="radio" th:value="${category.getId()}" name = "category" th:field="*{category}" th:text="${category.getCategoryName()}">
-                    </p>
-                    <input type="submit" value="save">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-            </div>
+            <p> <h2><b>Расходы</b></h2>
         </div>
-    </div>
-                </div>
-    </div>
-    <div class="col-lg-2 mb-4 mb-lg-0">
-                <div class="card-header">
-                    <div class="dropdown">
-                        <button type="button" class="btn-new rounded-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true">
-                           <h5><b> Фильтр </b></h5>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <form th:action="@{/search}" method = "post" th:object="${searchDto}">
-                                <input type="date" name = "date" placeholder="с" th:field="*{dateFrom}">
-                                <input type="date" name = "date" placeholder="по" th:field="*{dateTo}"><br>
-                                <input type="number" name = "amount" placeholder="с" th:field="*{amountFrom}">
-                                <input type="number" name = "amount" placeholder="по" th:field="*{amountTo}"><br>
+        <div class="col-lg-2 mb-4 mb-lg-0">
+            <button type="button" class="btn-new rounded-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <h5><b>Добавить сумму</b></h5>
+            </button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Добавление суммы</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="@{/saveExpenses}" method = "post" th:object="${exp}">
+                                <input type="number" step= "0.01" name = "amount" placeholder="amount" th:field="*{amount}"><br>
                                 <p th:each="category : ${categories}" >
                                     <input type="radio" th:value="${category.getId()}" name = "category" th:field="*{category}" th:text="${category.getCategoryName()}">
                                 </p>
-                                <input type="submit" value="search">
+                                <input type="submit" value="save">
                             </form>
-                        </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-lg-2 mb-4 mb-lg-0">
+            <div class="card-header">
+                <div class="dropdown">
+                    <button type="button" class="btn-new rounded-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true">
+                        <h5><b> Фильтр </b></h5>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <form th:action="@{/searchExpenses}" method = "post" th:object="${searchDto}">
+                            <input type="date" name = "date" placeholder="с" th:field="*{dateFrom}">
+                            <input type="date" name = "date" placeholder="по" th:field="*{dateTo}"><br>
+                            <input type="number" name = "amount" placeholder="с" th:field="*{amountFrom}">
+                            <input type="number" name = "amount" placeholder="по" th:field="*{amountTo}"><br>
+                            <p th:each="category : ${categories}" >
+                                <input type="radio" th:value="${category.getId()}" name = "category" th:field="*{category}" th:text="${category.getCategoryName()}">
+                            </p>
+                            <input type="submit" value="search">
+                        </form>
+                    </ul>
+                </div>
+            </div>
             </p>
         </div>
-       <hr style="border-width: 3px;">
+        <hr style="border-width: 3px;">
     </div>
 </div>
-            <div class="container px-4 py-5 px-xl-5">
-                <div class="row">
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                   <h4> <table class="zebra">
-                       <tr>
-                           <th>Amount</th>
-                           <th>Category</th>
-                           <th>Date</th>
-                       </tr>
-                       <tr th:each="fin : ${finances}">
-                           <td class="round-top align-middle" th:text="${fin.amount}"></td>
-                           <td class="align-middle" th:text="${fin.getCategory().getCategoryName()}"></td>
-                           <td class="align-middle" th:text="${fin.getDate()}"></td>
-                        </tr>
-                       <tr th:each="fin : ${search}">
-                           <td class="round-top align-middle" th:text="${fin.amount}"></td>
-                           <td class="align-middle" th:if="${fin.getCategory().getCategoryName()} != null" th:text="${exp.getCategory().getCategoryName()}"></td>
-                           <td class="align-middle" th:text="${fin.getDate()}"></td>
-                       </tr>
-                       <tr>
-                           <td class="round-bottom"> Итого:</td>
-                           <td th:action="@{/sum}" method ="get" th:text="${sum}"></td>
-                       </tr>
-                    </table></h4>
+<div class="container px-4 py-5 px-xl-5">
+    <div class="row">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+            <h4> <table class="zebra">
+                <tr>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                </tr>
+                <tr th:each="exp : ${expenses}">
+                    <td class="round-top align-middle" th:if="${exp.amount} < 0" th:text="${exp.amount}"></td>
+                    <td class="align-middle" th:if="${exp.amount} < 0" th:text="${exp.getCategory().getCategoryName()}"></td>
+                    <td class="align-middle" th:if="${exp.amount} < 0" th:text="${exp.getDate()}"></td>
+                    <form th:action="@{/deleteExpenses}" method = "post">
+                        <input type="hidden" name="id"  th:value = "${exp.getId()}">
+                    <td class="align-middle" th:if="${exp.amount} < 0">
+                        <button type="submit" class="btn-delete rounded-2">
+                            <h5><b>Удалить</b></h5>
+                        </button>
+                    </td>
+                    </form>
+                </tr>
+
+                <tr th:each="exp : ${search}">
+                            <td class="round-top align-middle" th:text="${exp.amount}"></td>
+                            <td class="align-middle" th:text="${exp.getDate()}"></td>
+                </tr>
+                <tr>
+                    <td class="round-bottom"> Итого:</td>
+                    <td th:action="@{/sumOfAllExpenses}" method ="get" th:text="${sumOfAllExpenses}"></td>
+                </tr>
+            </table></h4>
         </div>
         <div class="col-lg-6 mb-7 mb-lg-5 position-relative">
-<div class="card bg-glass">
-    <div class="card-body px-4 py-5 px-md-50">
-<table class = "table">
-    <tr>
-        <th style="color: #f2f2f2">Come</th>
-        <th>Gain</th>
-    </tr>
-    <tr>
-                <td style="background-color: hsla(180, 100%, 94%, 0.0); color: #123524"> <div class="pie" style="--p:70" th:action="@{/sumOfExpenses}" method ="get" th:text="${sumOfExpenses}"></div></td>
-               <td style="background-color: hsla(180, 100%, 94%, 0.0)"> <div class="pie" style="--p:60" th:action="@{/sumOfGain}" method ="get" th:text="${sumOfGain}"></div></td>
-    </tr>
-</table>
-    </div>
-</div>
+            <div class="card bg-glass">
+                <div class="card-body px-4 py-5 px-md-50">
+                    <table class = "table">
+                        <tr>
+                            <th style="color: #f2f2f2">Gain</th>
+                        </tr>
+                        <tr>
+                            <td style="background-color: hsla(180, 100%, 94%, 0.0); color: #123524"> <div class="pie" style="--p:70" th:action="@{/sumOfAllExpenses}" method ="get" th:text="${sumOfAllExpenses}"></div></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<!--<form th:action="@{/update}" method="post" th:each="exp : ${expenses}">-->
+<!--    <input type="hidden" th:value="${exp.getId()}"><br>-->
+<!--    <input type="number" step= "0.01" th:value="${exp.getAmount()}"><br>-->
+<!--    <input type="submit" value="Update"><br>-->
+<!--</form>-->
+<!---->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>

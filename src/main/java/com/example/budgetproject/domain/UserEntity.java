@@ -1,6 +1,9 @@
 package com.example.budgetproject.domain;
 
+import com.example.budgetproject.validation.CheckPasswordValidation;
+import com.example.budgetproject.validation.CheckUserNameValidation;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,8 +17,8 @@ import java.util.List;
 @Data @AllArgsConstructor @NoArgsConstructor
 
 @Entity
-@Table(name = "users")
-public class User implements UserDetails{
+@Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={"login", "password"}))
+public class UserEntity implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
