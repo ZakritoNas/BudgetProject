@@ -30,8 +30,10 @@ public class FinanceServiceImpl implements FinanceService {
 
     @Override
     public void save(FinanceDto dto) {
-        FinanceEntity entity = mapper.toEntity(dto);
-        repository.save(entity);
+        if(dto != null){
+            FinanceEntity entity = mapper.toEntity(dto);
+            repository.save(entity);
+        }
     }
 
     @Override
@@ -94,9 +96,9 @@ public class FinanceServiceImpl implements FinanceService {
     @Override
     public List<FinanceEntity> filterByMonth(LocalDate date) {
         List<FinanceEntity> all = repository.findAll();
-        List<FinanceEntity> collect = all.stream().filter(exp -> exp.getDate().getMonth().equals(date.getMonth()))
-                .collect(Collectors.toList());
-        return collect;
+            List<FinanceEntity> collect = all.stream().filter(exp -> exp.getDate().getMonth().equals(date.getMonth()))
+                    .collect(Collectors.toList());
+            return collect;
     }
 
     private Specification<FinanceEntity> createSpecif(FinanceSearchDto searchDto) {

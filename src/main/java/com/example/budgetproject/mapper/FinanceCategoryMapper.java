@@ -29,11 +29,6 @@ public interface FinanceCategoryMapper {
         entity.addFinance(finance);
     }
 
-//    @AfterMapping
-//    default void deleteExpenses (@MappingTarget FinanceCategoryEntity entity, FinanceCategoryDto dto){
-//        var expenses = new FinanceEntity();
-//        entity.deleteExpenses(expenses);
-//    }
     @Mapping(target = "categoryName", source = "categoryName")
     FinanceCategoryDto toDto (FinanceCategoryEntity entity);
 

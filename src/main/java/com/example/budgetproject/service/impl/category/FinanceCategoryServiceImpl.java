@@ -23,9 +23,6 @@ public class FinanceCategoryServiceImpl implements FinanceCategoryService {
 
     @Override
     public void save (FinanceCategoryDto dto) {
-        if (dto == null){
-            throw new RuntimeException("you can't save empty object");
-        }
         FinanceCategoryEntity entity = mapper.toEntity(dto);
         repository.save(entity);
     }
@@ -40,4 +37,5 @@ public class FinanceCategoryServiceImpl implements FinanceCategoryService {
     public List<FinanceCategoryEntity> findAll() {
        return repository.findAll();
     }
+
 }

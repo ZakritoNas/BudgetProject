@@ -1,9 +1,6 @@
 package com.example.budgetproject.domain;
 
-import com.example.budgetproject.validation.CheckPasswordValidation;
-import com.example.budgetproject.validation.CheckUserNameValidation;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

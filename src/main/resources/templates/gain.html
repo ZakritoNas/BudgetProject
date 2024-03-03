@@ -261,6 +261,7 @@
 
                 <tr th:each="gain : ${search}">
                     <td class="round-top align-middle" th:text="${gain.amount}"></td>
+                    <td class="align-middle" th:text="${gain.getCategory().getCategoryName()}"></td>
                     <td class="align-middle" th:text="${gain.getDate()}"></td>
                 </tr>
                 <tr>

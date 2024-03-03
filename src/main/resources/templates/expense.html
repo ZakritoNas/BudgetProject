@@ -261,6 +261,7 @@
 
                 <tr th:each="exp : ${search}">
                             <td class="round-top align-middle" th:text="${exp.amount}"></td>
+                            <td class="align-middle" th:text="${exp.getCategory().getCategoryName()}"></td>
                             <td class="align-middle" th:text="${exp.getDate()}"></td>
                 </tr>
                 <tr>

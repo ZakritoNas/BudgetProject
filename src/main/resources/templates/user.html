@@ -241,7 +241,7 @@
                         </tr>
                        <tr th:each="fin : ${search}">
                            <td class="round-top align-middle" th:text="${fin.amount}"></td>
-                           <td class="align-middle" th:if="${fin.getCategory().getCategoryName()} != null" th:text="${exp.getCategory().getCategoryName()}"></td>
+                           <td class="align-middle" th:text="${fin.getCategory().getCategoryName()}"></td>
                            <td class="align-middle" th:text="${fin.getDate()}"></td>
                        </tr>
                        <tr>

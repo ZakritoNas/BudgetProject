@@ -1,8 +1,6 @@
 package com.example.budgetproject.domain.expenses;
 
-import com.example.budgetproject.domain.enams.CategoryColor;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -31,9 +29,5 @@ public class FinanceCategoryEntity {
         this.finances = finances;
         finance.setCategory(this);
     }
-//
-//    public void deleteFinance (FinanceEntity fin){
-//        finances.remove(fin);
-//        fin.setCategory(null);
-//    }
+
 }

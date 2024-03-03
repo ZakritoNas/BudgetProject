@@ -5,7 +5,9 @@ import com.example.budgetproject.dto.expenses.FinanceDto;
 import com.example.budgetproject.dto.expenses.FinanceSearchDto;
 import com.example.budgetproject.service.FinanceCategoryService;
 import com.example.budgetproject.service.FinanceService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +31,6 @@ public class FinanceController {
         ModelAndView modelAndView = new ModelAndView("user");
         modelAndView.addObject("categories", categoryService.findAll());
         modelAndView.addObject("finances", service.findAll());
-//        modelAndView.addObject("search", service.search(dto));
         modelAndView.addObject("sum", service.sum());
         modelAndView.addObject("sumOfGain", service.sumOfGain());
         modelAndView.addObject("sumOfExpenses", service.sumOfExpenses());
@@ -45,12 +46,12 @@ public class FinanceController {
     }
 
     @PostMapping("/save")
-    public ModelAndView save (@ModelAttribute(name="findto") FinanceDto dto, BindingResult result){
+    public ModelAndView save (@ModelAttribute(name="findto") @Valid FinanceDto dto, BindingResult result){
         ModelAndView modelAndView = new ModelAndView("redirect:/user");
-        modelAndView.addObject("categories", categoryService.findAll());
-        service.save(dto);
-        modelAndView.addObject("finances", service.findAll());
-        return modelAndView;
+            modelAndView.addObject("categories", categoryService.findAll());
+            service.save(dto);
+            modelAndView.addObject("finances", service.findAll());
+            return modelAndView;
     }
 
     @GetMapping("/sum")

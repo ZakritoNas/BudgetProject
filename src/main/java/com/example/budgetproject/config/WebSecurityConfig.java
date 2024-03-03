@@ -17,7 +17,7 @@ public class WebSecurityConfig {
             cust
                     .requestMatchers("/public", "/register", "/login").permitAll()
                     .requestMatchers( "/save", "/update", "/search", "/categories", "/saveCategory", "/deleteCategory", "/findAllCategories").authenticated()
-                    .requestMatchers(  "/expense", "/deleteExpenses",  "/saveExpenses", "/gain", "/saveGain", "/deleteGain").authenticated()
+                    .requestMatchers(  "/expense", "/deleteExpenses",  "/saveExpenses", "/gain", "/saveGain", "/deleteGain", "/searchGains", "/searchExpenses").authenticated()
                     .requestMatchers("/user").hasRole("USER");
         });
 

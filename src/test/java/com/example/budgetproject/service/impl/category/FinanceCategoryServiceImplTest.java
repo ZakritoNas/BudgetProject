@@ -39,6 +39,7 @@ class FinanceCategoryServiceImplTest {
         Assertions.assertEquals(1, all.size());
     }
 
+
     @Test
     void testDelete() {
         FinanceCategoryServiceImpl categoryService = new FinanceCategoryServiceImpl(repository, mapper);
